@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🪔 दीपों का त्योहार - शुभकामनाएँ 🎆</title>
+    
+    <style>
+        /* ======================================= */
+        /* 1. BASE STYLES AND THEME (Maroon & Gold) */
+        /* ======================================= */
+        body {
+            font-family: 'Arial', sans-serif; 
+            background: #1a1a1a; 
+            color: #ffeb3b; 
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 400px; 
+            margin: 20px auto 30px; /* Neeche Ads ke liye margin */
+            background-color: #5d0000; 
+            border: 8px ridge #ffd700; 
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(255, 255, 0, 0.5);
+            position: relative;
+            z-index: 10; 
+        }
+
+        /* ======================================= */
+        /* 2. GREETING & NAME STYLES */
+        /* ======================================= */
+        #greeting { font-size: 2.2em; font-weight: 700; color: #ffd700; margin: 15px 0 5px; line-height: 1.2; text-shadow: 2px 2px 4px #000; }
+        #sub-greeting { font-size: 1.2em; color: #ffffff; margin: 5px 0 20px; }
+        #sender-name {
+            font-size: 1.4em; color: #ff9800; font-weight: 700; margin: 15px 0 25px; padding: 5px 10px;
+            background: #420000; border-radius: 5px; display: none; text-transform: capitalize;
+        }
+
+        /* ======================================= */
+        /* 3. IMAGE & FLOWER ANIMATION */
+        /* ======================================= */
+        .flower-fall {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 12; 
+        }
+        .flower-fall img { position: absolute; animation: fall linear infinite; width: 50px; opacity: 0.8; }
+        @keyframes fall {
+            0% { transform: translateY(-10%) translateX(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; }
+            100% { transform: translateY(100vh) translateX(50px) rotate(360deg); opacity: 0; }
+        }
+        /* Phool speed/delay settings - same as before */
+        .flower-fall img:nth-child(1) { left: 10%; animation-duration: 10s; animation-delay: 0s; }
+        .flower-fall img:nth-child(2) { left: 30%; animation-duration: 8s; animation-delay: 2s; }
+        .flower-fall img:nth-child(3) { left: 50%; animation-duration: 12s; animation-delay: 4s; }
+        .flower-fall img:nth-child(4) { left: 70%; animation-duration: 9s; animation-delay: 6s; }
+        .flower-fall img:nth-child(5) { left: 90%; animation-duration: 11s; animation-delay: 8s; }
+        
+        img {
+            max-width: 100%; height: auto; border-radius: 10px; margin: 10px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            animation: pulse 2s infinite alternate; position: relative; z-index: 11; 
+        }
+
+        /* ======================================= */
+        /* 4. SCROLLABLE AD FOOTER (NEW) */
+        /* ======================================= */
+        .scrollable-ad-footer {
+            /* Position static/relative rakhenge taaki scroll ho sake */
+            width: 100%;
+            background-color: #1a1a1a; /* Body background color */
+            padding: 20px 0;
+            text-align: center;
+            z-index: 1; /* Normal flow */
+        }
+        .ad-unit {
+            /* Ad unit ke liye container */
+            margin: 20px auto;
+            border: 1px solid #ffcc0040; /* Light border for separation */
+            background-color: #000; /* Ad space background */
+            padding: 5px;
+            max-width: 320px; /* Max width for mobile-friendly ad units */
+        }
+        .ad-unit p { color: #888; font-size: 0.8em; margin: 5px 0;}
+
+
+        /* ======================================= */
+        /* 5. INPUT & BUTTONS (Same as before) */
+        /* ======================================= */
+        .share-box { margin-top: 25px; background-color: #420000; padding: 20px; border-radius: 10px; border: 2px solid #ffcc00; }
+        .share-box p { font-size: 1em; margin-bottom: 15px; color: #ffe0b2; }
+
+        #nameInput { width: 90%; padding: 15px; border: 2px solid #ffd700; border-radius: 8px; font-size: 1em; margin-bottom: 15px; text-align: center; background-color: #6d0000; color: #ffffff; transition: border-color 0.3s; }
+        #nameInput:not([readonly]) { border-color: #ff4500; outline: 2px solid #ff4500; }
+        
+        .btn { padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease; margin: 8px; display: inline-flex; align-items: center; justify-content: center; }
+
+        .whatsapp-icon { margin-right: 8px; width: 20px; height: 20px; vertical-align: middle; }
+        #whatsappShareButton { background-color: #25d366; color: white; display: none; box-shadow: 0 4px #108e45; }
+        #generateButton { background-color: #4CAF50; color: white; box-shadow: 0 4px #388e3c; }
+        #share-text-box { display: none; margin-top: 15px; background: #6d0000; padding: 10px; border-radius: 8px; color: #ffffff; }
+
+        /* ======================================= */
+        /* 6. CRACKER ANIMATION (Same as before) */
+        /* ======================================= */
+        @keyframes launch {
+            0% { bottom: 0; opacity: 0; transform: scale(0); } 5% { bottom: 20%; opacity: 1; transform: scale(1); }
+            40% { bottom: 80%; opacity: 1; transform: scale(1); } 45% { bottom: 80%; opacity: 0; transform: scale(3.5); box-shadow: 0 0 150px 40px var(--color-light), 0 0 80px 20px var(--color-dark); }
+            100% { bottom: 0; opacity: 0; transform: scale(0); }
+        }
+        .rocket { position: fixed; left: var(--left); bottom: 0; width: 6px; height: 6px; border-radius: 50%; background-color: var(--color-light); pointer-events: none; animation: launch 2s infinite var(--delay); z-index: 5; box-shadow: 0 0 8px var(--color-light); }
+        .rocket:nth-child(1) { --left: 10%; --color-light: #ffeb3b; --color-dark: #ffc107; --delay: 0s; }
+        .rocket:nth-child(2) { --left: 90%; --color-light: #80cbc4; --color-dark: #00897b; --delay: 0.4s; }
+        .rocket:nth-child(3) { --left: 30%; --color-light: #ff8a65; --color-dark: #ff5722; --delay: 0.8s; }
+        .rocket:nth-child(4) { --left: 70%; --color-light: #b39ddb; --color-dark: #673ab7; --delay: 1.2s; }
+        .rocket:nth-child(5) { --left: 50%; --color-light: #4fc3f7; --color-dark: #03a9f4; --delay: 1.6s; }
+    </style>
+</head>
+<body>
+
+    <div class="flower-fall">
+        <img src="flower.gif" alt="गिरते हुए फूल">
+        <img src="flower.gif" alt="गिरते हुए फूल">
+        <img src="flower.gif" alt="गिरते हुए फूल">
+        <img src="flower.gif" alt="गिरते हुए फूल">
+        <img src="flower.gif" alt="गिरते हुए फूल">
+    </div>
+
+    <div class="rocket"></div>
+    <div class="rocket"></div>
+    <div class="rocket"></div>
+    <div class="rocket"></div>
+    <div class="rocket"></div>
+    
+
+    <div class="container">
+        
+        <h1 id="greeting">दीपों का त्योहार</h1>
+        <h2 id="sub-greeting">आपको और आपके परिवार को दिवाली की शुभकामनाएँ!</h2>
+        
+        <img src="Laxmi.gif" alt="देवी लक्ष्मी और गणेश जी की एनिमेटेड छवि">
+
+        <h3 id="sender-name"></h3> 
+
+        <div class="share-box">
+            <p>👇 यह सुंदर संदेश आगे भेजने के लिए अपना नाम लिखें:</p>
+            
+            <input type="text" id="nameInput" placeholder="अपना नाम यहाँ लिखें" maxlength="25">
+            <br>
+            <button class="btn" id="generateButton">
+                अपना लिंक बनाएँ
+            </button>
+
+            <div id="linkOutput" style="display: none; margin-top: 15px;">
+                <div id="share-text-box">
+                    <p>WhatsApp पर अपने प्रियजनों को यह संदेश भेजें।</p>
+                </div>
+                
+                <button class="btn" id="whatsappShareButton">
+                    <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+                        <path d="M12.001 0c-6.627 0-12 5.373-12 12s5.373 12 12 12c1.761 0 3.447-.39 4.979-1.079l3.52 1.258-1.294-3.418c1.326-1.571 2.105-3.564 2.105-5.321 0-6.627-5.373-12-12-12zm4.333 16.923c-.313.791-1.018 1.488-1.748 1.637l-.025.006c-.443.088-1.157-.133-1.688-.309-1.464-.474-2.887-1.391-4.086-2.589-1.199-1.199-2.115-2.622-2.589-4.086-.175-.53-.396-1.244-.309-1.688.151-.73.847-1.435 1.638-1.748l.006-.002c.31-.122.755-.133 1.077-.034l.764.256c.307.103.535.402.535.733l-.15 1.08c-.027.189-.009.431.144.607l.951.921c.176.176.418.194.607.144l1.08-.15c.331-.046.63.181.733.488l.256.764c.1.322.091.767-.031 1.077z"/>
+                    </svg>
+                    WhatsApp पर शेयर करें
+                </button>
+
+                <input type="text" id="generatedLink" readonly style="opacity: 0; height: 0; margin: 0; padding: 0;">
+            </div>
+        </div>
+    </div>
+    
+    <div class="scrollable-ad-footer">
+        <h2>Ads</h2>
+        
+        <div class="ad-unit">
+             <p>Advertisement 1: 320x50 Banner Ad</p>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'f6847d25010ab9bd31c410ca3b2b59af',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/f6847d25010ab9bd31c410ca3b2b59af/invoke.js"></script>
+        </div>
+
+        <div class="ad-unit" style="max-width: 300px;">
+            <p>Advertisement 2: 300x250 Ad</p>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '5fc031b08f93aacc98b6570d5df55979',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/5fc031b08f93aacc98b6570d5df55979/invoke.js"></script>
+        </div>
+
+        <div class="ad-unit" style="max-width: 300px;">
+            <p>Advertisement 3: 300x250 Ad (Repeat)</p>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '5fc031b08f93aacc98b6570d5df55979',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/5fc031b08f93aacc98b6570d5df55979/invoke.js"></script>
+        </div>
+        
+        <div class="ad-unit">
+             <p>Advertisement 4: Old 320x50 Banner Ad</p>
+             <script type="text/javascript"> 	atOptions = { 		'key' : 'cd66e1ff8a4bc17ccd63d57e75e18cbe', 		'format' : 'iframe', 		'height' : 50, 		'width' : 320, 		'params' : {} 	}; </script> 
+            <script type="text/javascript" src="//www.highperformanceformat.com/cd66e1ff8a4bc17ccd63d57e75e18cbe/invoke.js"></script>
+        </div>
+
+    </div>
+    <script>
+        // DOM Elements
+        const nameInput = document.getElementById('nameInput');
+        const generateButton = document.getElementById('generateButton');
+        const whatsappShareButton = document.getElementById('whatsappShareButton');
+        const senderNameElement = document.getElementById('sender-name');
+        const linkOutputDiv = document.getElementById('linkOutput');
+        const shareTextBox = document.getElementById('share-text-box');
+
+        // Function to check URL for sender's name and update greetings
+        function loadPageData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const senderName = urlParams.get('name'); 
+
+            if (senderName) {
+                const decodedName = decodeURIComponent(senderName).replace(/\+/g, ' '); 
+                senderNameElement.textContent = `${decodedName} की तरफ से आपको दिवाली की हार्दिक शुभकामनाएँ!`;
+                senderNameElement.style.display = 'inline-block'; 
+            } else {
+                senderNameElement.style.display = 'none'; 
+            }
+            
+            // Reset state for new link generation
+            nameInput.removeAttribute('readonly');
+            generateButton.textContent = "अपना लिंक बनाएँ";
+            whatsappShareButton.style.display = 'none';
+            linkOutputDiv.style.display = 'none';
+        }
+        
+        // Function to generate the link and show sharing options
+        function generateAndShowShare() {
+            const name = nameInput.value.trim(); 
+
+            if (name === "") {
+                alert("कृप्या पहले अपना शुभ नाम लिखें।");
+                nameInput.focus();
+                return;
+            }
+
+            const baseURL = window.location.origin + window.location.pathname;
+            const newLink = baseURL + '?name=' + encodeURIComponent(name);
+            const shareText = `🪔 दीपों का त्योहार 🎆\n\n*${name}* की तरफ से आपको दिवाली की हार्दिक शुभकामनाएँ।\n\nआप भी अपना नाम लिखकर यह सुंदर संदेश भेजें: 👇\n\n${newLink}`;
+
+            const whatsappLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+            
+            whatsappShareButton.onclick = function() {
+                window.open(whatsappLink, '_blank'); 
+            };
+            
+            // Update UI elements for sharing state
+            nameInput.setAttribute('readonly', 'true'); 
+            generateButton.textContent = "नाम बदलें"; 
+            whatsappShareButton.style.display = 'flex'; 
+            linkOutputDiv.style.display = 'block';
+            shareTextBox.style.display = 'block';
+
+            alert(`शुभकामना लिंक बन गया! अब WhatsApp पर शेयर करें!`);
+        }
+
+        // Main logic for the generate button click
+        generateButton.onclick = function() {
+            if (generateButton.textContent === "नाम बदलें") {
+                // Change back to edit state (Keyboard open hoga)
+                nameInput.removeAttribute('readonly');
+                generateButton.textContent = "अपना लिंक बनाएँ";
+                whatsappShareButton.style.display = 'none';
+                linkOutputDiv.style.display = 'none';
+                shareTextBox.style.display = 'none';
+                nameInput.focus(); 
+            } else {
+                // Generate the link
+                generateAndShowShare();
+            }
+        };
+        
+        // Run the function when the page loads
+        window.onload = loadPageData;
+    </script>
+</body>
+</html>
